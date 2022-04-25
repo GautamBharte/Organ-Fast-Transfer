@@ -1,6 +1,16 @@
 ,uniqueID,hospitalName,location,coordinates,Liver,Kidney,Pancreas,Heart,Corneas,Bone Marrow
 0,3521,Appolo Hospital,Minabai Thakre Stadium,"0,0",True,False,True,True,True,True
 1,3522,Siddhi Vinayak Hospital,Gangapur Road,"15,224",False,False,False,True,True,False
-2,3523,Apex Hospital,Indra Nagar,"567,345",False,False,True,False,True,False
-3,3524,Six Sigma Hospital,Mahatma Nagar,"567,345",False,False,True,False,True,False
+2,3523,Apex Hospital,Indra Nagar,"567,345",True,False,True,False,True,False
+3,3524,Six Sigma Hospital,Mahatma Nagar,"567,345",True,True,False,True,False,True
+4,3525,Wockhard Hospital,Mumbai - Agra National Hwy,"567,345",False,True,False,True,False,False
+5,3526,Ashoka Medicover Hospital,Parab Nagar,"567,345",True,True,False,True,True,True
+6,3527,Sahyadri Super Speciality Hospital,Mumbai-Agra Road,"567,345",False,True,False,True,False,False
+7,3528,Nephrons Kidney Care and Cure Centre,Mumbai Naka,"567,345",False,True,False,False,False,False
+8,3529,Lifeline Hospital,Dwarka Circle,"567,345",True,True,False,True,False,False
+9,3530,Namco Charitable Trust Multispeciality Hospital,Ashok Stambh,"567,345",True,True,True,True,False,False
+10,3531,Nashik ICU and Trauma Centre,Mumbai Naka,"567,345",False,False,False,True,True,False
+
+
+
 
