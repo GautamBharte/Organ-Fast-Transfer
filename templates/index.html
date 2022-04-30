@@ -1,0 +1,54 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast Organ Transplant</title>
+    <link rel="stylesheet" type="text/css" href="{% static 'index.css' %}">
+</head>
+<body>
+
+    <div class="mainpage">
+        <div class="header">
+            <h1>FAST ORGAN TRANSFER</h1>
+        </div>
+        <div class="graphinfo">
+            <div class="leftgrapgingo">
+                <form class="form" method="GET" action="{% url 'getInfo' %}">
+                    <input type="text" name="uniqueID" />
+                    <select name="organ" id="organ">
+                        {% for organ in organs %}
+                        <option value="Liver">{{organ}}</option>
+                        {% endfor %}
+                    </select>
+                    <button type="text" class="submit">Submit</button>    
+                </form>
+                {% if status %}
+                <h3>Server received request from {{uniqueID}} for {{organ}}</h3><hr>
+                <div class="sourceInfo">
+                    <h3>Unique ID: {{sourcehospitalID}}</h3>
+                    <h3>Hospital Name: {{sourceHospitalName}}</h3>
+                    <h3>Address: {{sourceHospitalAddress}}</h3>
+                    <h3>Request: {{organ}}</h3>
+                </div>
+                <h3>{{source_hospitalID}}</h3>
+                <h3>Organ required: {{Organ}}</h3>
+                <h3>{{availibilityList}}</h3>
+                <h3>{{shortestPath}}</h3>
+                {% endif %}
+            </div>
+            <div class="rightgraphinfo">
+                <iframe id="encoder_iframe"  overflow-y="hidden" frameborder="0" width=100% height=100% scrolling="no" src="{% url 'viewcitymap' %}"></iframe>
+            </div>
+        </div>
+        <div class="footer">
+            <h3>Reserve all rights @ DSA miniproject</h3>
+        </div>
+    </div>
+
+
+    
+</body>
+</html>

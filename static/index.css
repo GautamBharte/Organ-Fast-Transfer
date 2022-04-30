@@ -1,0 +1,62 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10vh;
+    background: rgb(7, 20, 34);
+    /* border: 2px solid black; */
+}
+
+.graphinfo{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 200px;
+    height: 80vh;
+}
+.leftgrapgingo{
+    display: flex;
+    width: 50%;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.sourceInfo{
+    border: 1px solid black;
+    background: rgb(214, 214, 214);
+}
+.leftgrapgingo form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+.leftgrapgingo form select{
+    height: 30px;
+    margin: 10px 0px;
+    width: fit-content;
+    border: 1px solid black;
+}
+.rightgraphinfo{
+    background: #EAF6F6;
+    width: 100%;
+}
+.footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10vh;
+    background: rgb(7, 20, 34);
+}
