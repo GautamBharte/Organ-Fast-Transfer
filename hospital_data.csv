@@ -1,4 +1,0 @@
-,uniqueID,hospitalName,location,coordinates,Liver,Kidney,Pancreas,Heart,Corneas,Bone Marrow
-0,3521,Apollo Hospital,Minabai Thakre Stadium,"0,0",TRUE,FALSE,TRUE,TRUE,TRUE,TRUE
-1,3522,Siddhi Vinayak Hospital,Gangapur Road,"15,224",FALSE,FALSE,FALSE,TRUE,TRUE,FALSE
-2,3523,Apex Hospital,Indra Nagar,"5,67,345",TRUE,FALSE,TRUE,FALSE,TRUE,FALSE
