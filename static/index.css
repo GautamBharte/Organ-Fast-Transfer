@@ -1,0 +1,99 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@100&display=swap');
+
+*{
+    margin: 0px;
+    padding: 0px;
+    font-family: 'Roboto', sans-serif;
+    color: rgb(93, 93, 93)
+}
+
+.header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10vh;
+    background: rgb(16, 16, 16);
+    /* border: 2px solid black; */
+}
+.header h1{
+    
+}
+
+.graphinfo{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    height: 200px;
+    height: 90vh;
+}
+.leftgrapgingo{
+    display: flex;
+    width: 50%;
+    flex-direction: column;
+    /* justify-content: center;
+    align-items: center; */
+    padding: 1rem;
+    overflow-y:scroll
+}
+.table{
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+.leftgrapgingo form select{
+    font-size: 20px;
+}
+.sourceInfo{
+    border: 1px solid black;
+    background: rgb(214, 214, 214);
+    margin: 10px 0px;
+}
+.destninationInfo{
+    border: 1px solid black;
+    background: rgb(214, 214, 214);
+    margin: 10px 0px;
+}
+.leftgrapgingo form{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid black; */
+}
+.leftgrapgingo form select{
+    height: 30px;
+    margin: 10px 0px;
+    width: 90%;
+    border: 1px solid black;
+}
+.leftgrapgingo form button{
+    height: 35px;
+    width: 90px;
+    font-size: 18px;
+    font-weight: bold;
+    border: 1px solid #acadad;
+    border-radius: 5%;
+    background: #e8e8e8;
+}
+.leftgrapgingo form button:hover{
+    background: #b9b9b9;
+    color: white;
+}
+.rightgraphinfo{
+    background: #EAF6F6;
+    width: 100%;
+}
+.footer{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    height: 10vh;
+    background: rgb(16, 16, 16);
+    z-index: 4;
+    position:sticky;
+}
