@@ -1,108 +1,103 @@
 <html>
-<head>
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
-<script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
-<center>
-<h1></h1>
-</center>
 
-<!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
+<head>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis.css" type="text/css" />
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/vis/4.16.1/vis-network.min.js"> </script>
+    <center>
+        <h1></h1>
+    </center>
+
+    <!-- <link rel="stylesheet" href="../node_modules/vis/dist/vis.min.css" type="text/css" />
 <script type="text/javascript" src="../node_modules/vis/dist/vis.js"> </script>-->
 
-<style type="text/css">
-
+    <style type="text/css">
         #mynetwork {
-            width: 500px;
-            height: 500px;
+            width: 100%;
+            height: 100%;
             background-color: #ffffff;
             border: 1px solid lightgray;
             position: relative;
             float: left;
         }
-
-        
-
-        
-
-        
-</style>
+    </style>
 
 </head>
 
 <body>
-<div id = "mynetwork"></div>
+    <div id="mynetwork"></div>
 
 
-<script type="text/javascript">
+    <script type="text/javascript">
 
-    // initialize global variables.
-    var edges;
-    var nodes;
-    var network; 
-    var container;
-    var options, data;
+        // initialize global variables.
+        var edges;
+        var nodes;
+        var network;
+        var container;
+        var options, data;
 
-    
-    // This method is responsible for drawing the graph, returns the drawn network
-    function drawGraph() {
-        var container = document.getElementById('mynetwork');
-        
-        
 
-        // parsing and collecting nodes and edges from the python
-        nodes = new vis.DataSet([{"color": "#0AA1DD", "id": "Apollo Hospital", "label": "Apollo Hospital", "shape": "dot", "x": 10, "y": 5}, {"color": "#0AA1DD", "id": "Siddhi Vinayak Hospital", "label": "Siddhi Vinayak Hospital", "shape": "dot", "x": 60, "y": 35}, {"color": "#0AA1DD", "id": "Apex Hospital", "label": "Apex Hospital", "shape": "dot", "x": 110, "y": 65}, {"color": "#0AA1DD", "id": "Six Sigma Hospital", "label": "Six Sigma Hospital", "shape": "dot", "x": 160, "y": 95}, {"color": "#0AA1DD", "id": "Wockhard Hospital", "label": "Wockhard Hospital", "shape": "dot", "x": 210, "y": 125}, {"color": "#0AA1DD", "id": "Fortune Hospital", "label": "Fortune Hospital", "shape": "dot", "x": 260, "y": 155}, {"color": "#0AA1DD", "id": "Lilavti Hospital", "label": "Lilavti Hospital", "shape": "dot", "x": 310, "y": 185}, {"color": "#0AA1DD", "id": "Ashoka Medicover Hospital", "label": "Ashoka Medicover Hospital", "shape": "dot", "x": 360, "y": 215}, {"color": "#0AA1DD", "id": "Supreme Kidney Hospital", "label": "Supreme Kidney Hospital", "shape": "dot", "x": 410, "y": 245}, {"color": "#0AA1DD", "id": "Lotus Hospital", "label": "Lotus Hospital", "shape": "dot", "x": 460, "y": 275}]);
-        edges = new vis.DataSet([{"color": "#2155CD", "from": "Apollo Hospital", "label": 4.8, "to": "Siddhi Vinayak Hospital", "weight": 4.8}, {"color": "#2155CD", "from": "Apollo Hospital", "label": 5.3, "to": "Lilavti Hospital", "weight": 5.3}, {"color": "#2155CD", "from": "Apollo Hospital", "label": 6.9, "to": "Supreme Kidney Hospital", "weight": 6.9}, {"color": "#2155CD", "from": "Siddhi Vinayak Hospital", "label": 5.4, "to": "Ashoka Medicover Hospital", "weight": 5.4}, {"color": "#2155CD", "from": "Siddhi Vinayak Hospital", "label": 1.6, "to": "Lotus Hospital", "weight": 1.6}, {"color": "#2155CD", "from": "Apex Hospital", "label": 0.9, "to": "Siddhi Vinayak Hospital", "weight": 0.9}, {"color": "#2155CD", "from": "Apex Hospital", "label": 3.7, "to": "Wockhard Hospital", "weight": 3.7}, {"color": "#2155CD", "from": "Apex Hospital", "label": 6.4, "to": "Lilavti Hospital", "weight": 6.4}, {"color": "#2155CD", "from": "Apex Hospital", "label": 0.8, "to": "Supreme Kidney Hospital", "weight": 0.8}, {"color": "#2155CD", "from": "Six Sigma Hospital", "label": 8.7, "to": "Apollo Hospital", "weight": 8.7}, {"color": "#2155CD", "from": "Six Sigma Hospital", "label": 9.2, "to": "Lilavti Hospital", "weight": 9.2}, {"color": "#2155CD", "from": "Six Sigma Hospital", "label": 2.7, "to": "Supreme Kidney Hospital", "weight": 2.7}, {"color": "#2155CD", "from": "Wockhard Hospital", "label": 4.1, "to": "Apollo Hospital", "weight": 4.1}, {"color": "#2155CD", "from": "Wockhard Hospital", "label": 3.6, "to": "Supreme Kidney Hospital", "weight": 3.6}, {"color": "#2155CD", "from": "Fortune Hospital", "label": 4.6, "to": "Apollo Hospital", "weight": 4.6}, {"color": "#2155CD", "from": "Fortune Hospital", "label": 3.2, "to": "Apex Hospital", "weight": 3.2}, {"color": "#2155CD", "from": "Fortune Hospital", "label": 4.9, "to": "Lotus Hospital", "weight": 4.9}, {"color": "#2155CD", "from": "Lilavti Hospital", "label": 5.6, "to": "Siddhi Vinayak Hospital", "weight": 5.6}, {"color": "#2155CD", "from": "Lilavti Hospital", "label": 9.4, "to": "Ashoka Medicover Hospital", "weight": 9.4}, {"color": "#2155CD", "from": "Lilavti Hospital", "label": 7.0, "to": "Lotus Hospital", "weight": 7.0}, {"color": "#2155CD", "from": "Ashoka Medicover Hospital", "label": 6.5, "to": "Lotus Hospital", "weight": 6.5}, {"color": "#2155CD", "from": "Supreme Kidney Hospital", "label": 1.6, "to": "Siddhi Vinayak Hospital", "weight": 1.6}, {"color": "#2155CD", "from": "Supreme Kidney Hospital", "label": 4.7, "to": "Ashoka Medicover Hospital", "weight": 4.7}, {"color": "#2155CD", "from": "Lotus Hospital", "label": 6.0, "to": "Apollo Hospital", "weight": 6.0}, {"color": "#2155CD", "from": "Lotus Hospital", "label": 2.2, "to": "Apex Hospital", "weight": 2.2}]);
+        // This method is responsible for drawing the graph, returns the drawn network
+        function drawGraph() {
+            var container = document.getElementById('mynetwork');
 
-        // adding nodes and edges to the graph
-        data = {nodes: nodes, edges: edges};
 
-        var options = {
-    "configure": {
-        "enabled": false
-    },
-    "edges": {
-        "color": {
-            "inherit": true
-        },
-        "smooth": {
-            "enabled": false,
-            "type": "continuous"
+
+            // parsing and collecting nodes and edges from the python
+            nodes = new vis.DataSet([{ "color": "#0AA1DD", "id": "Apollo Hospital", "label": "Apollo Hospital", "shape": "dot", "x": 1100, "y": 200 }, { "color": "#0AA1DD", "id": "Siddhi Vinayak Hospital", "label": "Siddhi Vinayak Hospital", "shape": "dot", "x": 800, "y": 500 }, { "color": "#0AA1DD", "id": "Apex Hospital", "label": "Apex Hospital", "shape": "dot", "x": 500, "y": 400 }, { "color": "#0AA1DD", "id": "Six Sigma Hospital", "label": "Six Sigma Hospital", "shape": "dot", "x": 100, "y": 700 }, { "color": "#0AA1DD", "id": "Wockhardt Hospital", "label": "Wockhardt Hospital", "shape": "dot", "x": 1100, "y": 1000 }, { "color": "#0AA1DD", "id": "Fortune Hospital", "label": "Fortune Hospital", "shape": "dot", "x": 1300, "y": 1100 }, { "color": "#0AA1DD", "id": "Lilavti Hospital", "label": "Lilavti Hospital", "shape": "dot", "x": 1400, "y": 400 }, { "color": "#0AA1DD", "id": "Ashoka Medicover Hospital", "label": "Ashoka Medicover Hospital", "shape": "dot", "x": 1200, "y": 1200 }, { "color": "#0AA1DD", "id": "Supreme Kidney Hospital", "label": "Supreme Kidney Hospital", "shape": "dot", "x": 600, "y": 600 }, { "color": "#0AA1DD", "id": "Lotus Hospital", "label": "Lotus Hospital", "shape": "dot", "x": 500, "y": 900 }]);
+            edges = new vis.DataSet([{ "color": "#2155CD", "from": "Apollo Hospital", "label": 5.1, "to": "Siddhi Vinayak Hospital", "weight": 5.1, "width": 3 }, { "color": "#2155CD", "from": "Apollo Hospital", "label": 5.4, "to": "Lilavti Hospital", "weight": 5.4, "width": 3 }, { "color": "#2155CD", "from": "Siddhi Vinayak Hospital", "label": 2.6, "to": "Lilavti Hospital", "weight": 2.6, "width": 3 }, { "color": "#2155CD", "from": "Siddhi Vinayak Hospital", "label": 3.3, "to": "Wockhardt Hospital", "weight": 3.3, "width": 3 }, { "color": "#2155CD", "from": "Siddhi Vinayak Hospital", "label": 1.9, "to": "Supreme Kidney Hospital", "weight": 1.9, "width": 3 }, { "color": "#2155CD", "from": "Siddhi Vinayak Hospital", "label": 0.8, "to": "Apex Hospital", "weight": 0.8, "width": 3 }, { "color": "#2155CD", "from": "Apex Hospital", "label": 2.2, "to": "Supreme Kidney Hospital", "weight": 2.2, "width": 3 }, { "color": "#2155CD", "from": "Apex Hospital", "label": 3.1, "to": "Six Sigma Hospital", "weight": 3.1, "width": 3 }, { "color": "#2155CD", "from": "Six Sigma Hospital", "label": 2.7, "to": "Lotus Hospital", "weight": 2.7, "width": 3 }, { "color": "#2155CD", "from": "Wockhardt Hospital", "label": 3.4, "to": "Ashoka Medicover Hospital", "weight": 3.4, "width": 3 }, { "color": "#2155CD", "from": "Wockhardt Hospital", "label": 1.9, "to": "Fortune Hospital", "weight": 1.9, "width": 3 }, { "color": "#2155CD", "from": "Wockhardt Hospital", "label": 2.9, "to": "Lotus Hospital", "weight": 2.9, "width": 3 }, { "color": "#2155CD", "from": "Wockhardt Hospital", "label": 5.0, "to": "Supreme Kidney Hospital", "weight": 5.0, "width": 3 }, { "color": "#2155CD", "from": "Wockhardt Hospital", "label": 3.5, "to": "Lilavti Hospital", "weight": 3.5, "width": 3 }, { "color": "#2155CD", "from": "Fortune Hospital", "label": 9.2, "to": "Lilavti Hospital", "weight": 9.2, "width": 3 }, { "color": "#2155CD", "from": "Fortune Hospital", "label": 1.7, "to": "Ashoka Medicover Hospital", "weight": 1.7, "width": 3 }, { "color": "#2155CD", "from": "Supreme Kidney Hospital", "label": 2.3, "to": "Lotus Hospital", "weight": 2.3, "width": 3 }]);
+
+            // adding nodes and edges to the graph
+            data = { nodes: nodes, edges: edges };
+
+            var options = {
+                "configure": {
+                    "enabled": false
+                },
+                "edges": {
+                    "color": {
+                        "inherit": true
+                    },
+                    "smooth": {
+                        "enabled": false,
+                        "type": "continuous"
+                    }
+                },
+                "interaction": {
+                    "dragNodes": true,
+                    "hideEdgesOnDrag": false,
+                    "hideNodesOnDrag": false
+                },
+                "physics": {
+                    "enabled": "false",
+                    "stabilization": {
+                        "enabled": true,
+                        "fit": true,
+                        "iterations": 1000,
+                        "onlyDynamicEdges": false,
+                        "updateInterval": 50
+                    }
+                }
+            };
+
+
+
+
+
+            network = new vis.Network(container, data, options);
+
+
+
+
+
+
+            return network;
+
         }
-    },
-    "interaction": {
-        "dragNodes": true,
-        "hideEdgesOnDrag": false,
-        "hideNodesOnDrag": false
-    },
-    "physics": {
-        "enabled": "false",
-        "stabilization": {
-            "enabled": true,
-            "fit": true,
-            "iterations": 1000,
-            "onlyDynamicEdges": false,
-            "updateInterval": 50
-        }
-    }
-};
-        
-        
 
-        
+        drawGraph();
 
-        network = new vis.Network(container, data, options);
-	 
-        
-
-
-        
-
-        return network;
-
-    }
-
-    drawGraph();
-
-</script>
+    </script>
 </body>
+
 </html>
