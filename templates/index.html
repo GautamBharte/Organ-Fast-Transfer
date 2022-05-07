@@ -1,0 +1,265 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fast_Organ_Transfer</title>
+    <link rel="stylesheet" href="{% static 'index.css' %}">
+
+    <style>
+        .heading {
+            text-align: center;
+        }
+
+        .head2 {
+            text-align: center;
+        }
+
+        .row {
+            border: dotted grey 6px;
+            border-bottom: none;
+            width: 7%;
+            margin: auto
+        }
+
+        ol {
+            margin-left: 80px;
+            font-size: 25px;
+        }
+
+        ul {
+            margin: auto;
+            font-size: 20px;
+        }
+
+        p {
+            margin: auto;
+            font-size: 20px;
+        }
+
+        hr {
+            border: solid black 2px;
+        }
+        .documentation{
+            margin: 50px 80px;
+        }
+    </style>
+
+</head>
+
+<body>
+    <div class="mainpage">
+        <div class="header">
+            <h1>FAST ORGAN TRANSFER</h1>
+        </div>
+        <div class="graphinfo">
+            <div class="leftgrapgingo">
+                <div class="table">
+                    <table style="border: 1px solid black;">
+                        <tr>
+                            <th>uniqueID</th>
+                        </tr>
+                        {% for uniqueId in uniqueIDlist %}
+                        <tr>
+                            <td>{{uniqueId}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                    <table style="border: 1px solid black;">
+                        <tr>
+                            <th>Hospital Name</th>
+                        </tr>
+                        {% for hospital in hospitalList %}
+                        <tr>
+                            <td>{{hospital}}</td>
+                        </tr>
+                        {% endfor %}
+                    </table>
+                </div>
+                <form class="form" method="GET" action="{% url 'getInfo' %}">
+                    <!-- <input type="text" placeholder="Unique ID" name="HospitalID" id="Hospital" /> -->
+                    <select name="HospitalID" id="HospitalID">
+                        {% for hospital in uniqueIDlist %}
+                        <option>{{hospital}}</option>
+                        {% endfor %}
+                    </select>
+                    <select name="organ" id="organ">
+                        {% for organ in organlist %}
+                        <option>{{organ}}</option>
+                        {% endfor %}
+                    </select>
+                    <!-- <input type="text" placeholder="Organ request" name="organ" id="organ" /> -->
+                    <button type="text" class="submit">Search</button>
+                    <!-- after submit -->
+                </form>
+                {% if status %}
+                <h3>Server received request from {{sourceId}} for {{organreq}}</h3>
+                <hr>
+                <div class="sourceInfo">
+                    <h3>Unique ID: {{sourceId}}</h3>
+                    <h3>Hospital Name: {{srcHospitalName}}</h3>
+                    <h3>Address: {{srcHospitalAddress}}</h3>
+                    <h3>Request: {{organreq}}</h3>
+                </div>
+                <div class="destninationInfo">
+                    <h3>Unique ID: {{distinationId}}</h3>
+                    <h3>Hospital Name: {{destHospitalName}}</h3>
+                    <h3>Address: {{destHospitalAddress}}</h3>
+                    <h3>Distance: {{closestdistance}}</h3>
+                </div>
+
+                <a href="#genrateRoport"><button onclick="window.location='report';" class="viewdata">View Full
+                        Report</button></a>
+                {% endif %}
+            </div>
+            <div class="rightgraphinfo">
+                <img src="{% static 'map.png' %}" width="100%" height="100%" class="img-fluid" alt="...">
+            </div>
+        </div>
+
+        <iframe src="{{googlemaplink}}" width="100%" height="700px" style="border:0;" allowfullscreen=""
+                    loading="lazy" referrerpolicy="no-referrer-when-downgrade"></iframe>
+
+    </div>
+
+    <div class="documentation">
+    <div class="heading">
+        <h2>K.K.Wagh Institute of Engineering Education and Research,Nashik</h2>
+        <h2>SE Computer Engineering(2019 Pattern)</h2>
+        <h3>DATA STRUCTURE AND ALGORITHMS LABORATORY MINI-PROJECT</h3>
+    </div>
+
+    <hr>
+    </hr>
+    <h2><b>Project Title :</b><small> Fast Organ Transfer</small></h2>
+    <h2>Group Members :</h2>
+    <ol>
+        <li>Atharv Satish Bhavsar</li>
+        <li>Gautam Kailas Bharte</li>
+        <li>Prathamesh Bansilal Gadilohar</li>
+        <li>Mayuri Janardan Jadhav</li>
+        <li>Mitali Krushna Zope</li>
+    </ol>
+    <h2>Guided By -<small>Prof.S.D.Gondhalekar</small></h2>
+    <hr>
+    <br>
+    <br>
+    <h2 class="head2">Motivation of the Project</h2>
+    <p>&emsp;&emsp;Organ transplantation in India comes with a varied number of unwanted discrepancies. Lack of an
+        efficiently centralized metadata to generate potential matches in real-time as well as transport issues and
+        traffic congestions pose a major threat to successful transplantations in a diverse country like India.
+        Efficient route tracking architectures coupled with proper statistical and data analysis systems can help
+        generate a roughly accurate database with potential matches spontaneously to tackle these emergencies and
+        thereby reduce fatalities.</p>
+    <ul>
+        <li>Living Donor-Kidney</li>
+        <li>Brain or Cardiac death - Can donate all organ</li>
+    </ul>
+    <p>&emsp;&emsp;<b>The goal of the project</b> is to locate cases of immediate transplantation due to accident
+        or any other incident, search the database and a match which is the closest donor.
+    </p>
+    <br><br>
+    <hr class="row">
+    <br />
+    <br />
+    <h2 class="head2">Description</h2>
+    <p>&emsp;&emsp;<b>Dijkstra’s algorithm</b> is one of the most popular algorithms for solving many single-source
+        shortest path problems having non-negative edge weight in the graphs i.e., it is to find the shortest distance
+        between two vertices on a graph. This project is based on the Dijkstra’s algorithm which helps user to get the
+        proper matching donor for the organ transplant which is at the shortest distance . This is largely dependent on
+        the database collected and maintained based on which Dijkstra’s algorithms and optimization techniques can be
+        incorporated so as to derive the best possible donor-recipient match in accordance to predefined results and
+        outcomes .It takes Hospital ID and Organ which is required as an input and returns the hospital which is having
+        required organ and is at shortest distance. so that , the organ donor can be found easily and transferred as
+        soon as possible to save the life of patient . This reduces the casualties due to not getting an organ on time .
+    </p>
+    <br>
+    <br>
+    <br />
+    <hr class="row">
+    <br />
+    <br />
+    <h2>Methodologies used for implementation:</h2>
+    <ul>
+        <li>To host an interlinked database of all the hospitals (data of donor and recipient).</li>
+        <li>Statistical Data Analysis to sort out potential donor-recipient matches.</li>
+        <li>A GPS system to track the possible routes among the potential matches.</li>
+        <li>Dijkstra’s Algorithm to find the shortest path from the donor hospital to acceptor hospital.</li>
+    </ul>
+</div>
+
+    {% if status %}
+    <div class="genrateRoport">
+        <div class="title">
+            <h3>Hospital Data Report</h3>
+        </div>
+
+        <div class="srcdestInfo">
+            <div id="hosInfo" class="srcInfo">
+                <h3>uniqueID: {{sourceId}}</h3>
+                <h3>Hospital Name: {{srcHospitalName}}</h3>
+                <h3>Address: {{srcHospitalAddress}}</h3>
+            </div>
+            <div id="hosInfo" class="desInfo">
+                <h3>uniqueID: {{distinationId}}</h3>
+                <h3>Hospital Name: {{destHospitalName}}</h3>
+                <h3>Address: {{destHospitalAddress}}</h3>
+            </div>
+        </div>
+
+        <div class="statement">
+            <h3>Minimum distance from {{srcHospitalName}} to {{destHospitalName}} is {{closestdistance}}</h3>
+        </div>
+
+        <div class="avlHospitalList">
+            <div class="hosListtitle">
+                <h3>Hospitals Organ availability Data</h3>
+            </div>
+            <div class="tabledata">
+                <table style="border: 1px solid black;">
+                    <tr>
+                        <th>uniqueID</th>
+                    </tr>
+                    {% for id in ids %}
+                    <tr>
+                        <td>{{id}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table style="border: 1px solid black;">
+                    <tr>
+                        <th>Hospital Name</th>
+                    </tr>
+                    {% for hospital in names %}
+                    <tr>
+                        <td>{{hospital}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+                <table style="border: 1px solid black;">
+                    <tr>
+                        <th>Hospital Name</th>
+                    </tr>
+                    {% for hospital in address %}
+                    <tr>
+                        <td>{{hospital}}</td>
+                    </tr>
+                    {% endfor %}
+                </table>
+            </div>
+        </div>
+
+    </div>
+    {% endif %}
+
+    <div class="footer">
+        <h3>Reserve all rights @ <a href="https://github.com/GautamBharte/Organ-Fast-Transplant.git">DSA miniproject</a>
+        </h3>
+    </div>
+    </div>
+</body>
+
+</html>
